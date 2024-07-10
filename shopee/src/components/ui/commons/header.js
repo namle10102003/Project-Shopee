@@ -1,4 +1,4 @@
-import react from 'react';
+import react, { useRef } from 'react';
 import {Link} from 'react-router-dom';
 import qrImg from '../../../assets/images/qr_code.png';
 import appstoreImg from '../../../assets/images/app_store.png';
@@ -10,6 +10,14 @@ import noCartImg from '../../../assets/images/no_cart.png';
 import './header.css';
 
 const Header = () => {
+    const searchLinkRef = useRef(null);
+
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            searchLinkRef.current.click();
+        }
+    };
+
     return (
                 <header class="header">
                     <div class="grid">
@@ -127,7 +135,7 @@ const Header = () => {
         
                             <div class="header__search">
                                 <div class="header__search-input-wrap">
-                                    <input type="text" class="header__search-input" placeholder="SALE SỐC MUA LÀ CÓ QUÀ"></input>
+                                    <input type="text" id="search-bar" class="header__search-input" placeholder="SALE SỐC MUA LÀ CÓ QUÀ" onKeyPress={handleKeyPress}></input>
                                     <div class="header__search-history">
                                         <h3 class="header__search-history-heading">Lịch sử tìm kiếm</h3>
                                         <ul class="header__search-history-list">
@@ -140,9 +148,9 @@ const Header = () => {
                                         </ul>
                                     </div>
                                 </div>
-                                <button class="header__search-btn">
+                                <Link to="/" class="header__search-btn" ref={searchLinkRef}>
                                     <i class="header__search-btn-icon fas fa-search"></i>
-                                </button>
+                                </Link>
                             </div>
         
                             <div class="header__cart">

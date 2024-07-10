@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "name": "Nguyen Van A",
+        "username": "vinh",
+        "password": "vinh"
+    },
+    {
+        "id": 2,
+        "name": "Tran Thi B",
+        "username": "nhi",
+        "password": "nhi"
+    },
+    {
+        "id": 3,
+        "name": "Le Hoang C",
+        "username": "lehoangc",
+        "password": "123456"
+    },
+    {
+        "id": 4,
+        "name": "Pham Minh D",
+        "username": "phamminhd",
+        "password": "admin@123"
+    },
+    {
+        "id": 5,
+        "name": "Bui Thi E",
+        "username": "buithie",
+        "password": "qwerty"
+    }
+]

@@ -7,6 +7,7 @@ import ProductPage from '../pages/productPage';
 import CartPage from '../pages/cartPage';
 import CheckoutPage from '../pages/checkoutPage';
 import OrderTrackingPage from '../pages/orderTrackingPage';
+import LoginPage from '../pages/loginPage.jsx';
 
 function AppRouter() {
   return (
@@ -14,6 +15,7 @@ function AppRouter() {
         <Header />
         
           <Routes>
+          <Route path="/login" element={<LoginPage />} />
               <Route path="/" element={<HomePage />} />
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />

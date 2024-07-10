@@ -1,12 +1,12 @@
 import react, { useRef } from 'react';
 import {Link} from 'react-router-dom';
+
 import qrImg from '../../../assets/images/qr_code.png';
 import appstoreImg from '../../../assets/images/app_store.png';
 import ggplayImg from '../../../assets/images/google_play.png';
 import cosmeticImg from '../../../assets/images/cosmetic_1.webp';
 import avatarImg from '../../../assets/images/avatar.jpg';
 import noCartImg from '../../../assets/images/no_cart.png';
-
 import './header.css';
 
 const Header = () => {
@@ -20,7 +20,7 @@ const Header = () => {
 
     return (
                 <header class="header">
-                    <div class="grid">
+                    <div class="grid wide">
                         <nav class="header__navbar">
                             <ul class="header__navbar-list">
                                 <li class="header__navbar-item header__navbar-item--has-qr header__navbar-item--separate">

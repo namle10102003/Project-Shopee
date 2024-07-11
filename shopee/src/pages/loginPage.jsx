@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
-import facebookIcon from '../assets/images/logo.png';
-import googleIcon from '../assets/images/logo.png';
+import facebookIcon from '../assets/images/logoFb.png';
+import googleIcon from '../assets/images/logoGg.png';
 import '../css/login/login.css';
-import accounts from '../db.json'; // Đảm bảo đường dẫn đến tệp db.json là chính xác
+import accounts from '../db.json'; 
 
 function LoginPage() {
     const [username, setUsername] = useState('');
@@ -20,9 +20,9 @@ function LoginPage() {
         if (account) {
             alert('Đăng nhập thành công');
             // Chuyển hướng đến trang khác, ví dụ: trang chủ
-            navigate('/');// Thay đổi '/home' thành URL của trang bạn muốn điều hướng đến
+            navigate('/');// 
         } else {
-            alert('Đăng nhập thất bại');
+            alert('Tên đăng nhập hoặc mật khẩu không đúng');
         }
     };
 
@@ -32,7 +32,7 @@ function LoginPage() {
                 <div className="container">
                     <a className="navbar-brand" href="#" style={{ display: 'flex' }}>
                         <img src={logo} alt="" className=" " />
-                        <p> Đăng Nhặp</p>
+                        <p> Đăng Nhập</p>
                     </a>
                 </div>
             </nav>

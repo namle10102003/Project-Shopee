@@ -1,5 +1,7 @@
 import react, { useRef } from 'react';
 import {Link} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
 
 import qrImg from '../../../assets/images/qr_code.png';
 import appstoreImg from '../../../assets/images/app_store.png';
@@ -10,12 +12,35 @@ import noCartImg from '../../../assets/images/no_cart.png';
 import './header.css';
 
 const Header = () => {
+    const navigate = useNavigate();
     const searchLinkRef = useRef(null);
 
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
             searchLinkRef.current.click();
         }
+    };
+
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+    const handleMyProfile = (event) => {
+        event.preventDefault();
+        if (loggedInUser) {
+            navigate(`/user/${loggedInUser.id}`);
+        } else {
+            navigate('/login');
+        }
+    }
+
+    const handleLogout = (event) => {
+        event.preventDefault(); 
+        localStorage.removeItem('loggedInUser'); 
+        navigate('/login'); 
+    };
+
+    const handleSignIn = (event) => {
+        event.preventDefault(); 
+        navigate('/login'); 
     };
 
     return (
@@ -48,6 +73,8 @@ const Header = () => {
                                 </li>
                             </ul>
             
+                                
+                                 {loggedInUser ? (
                              <ul class="header__navbar-list">
                                  <li class="header__navbar-item header__navbar-item--has-notify">
                                      <a href="" class="header__navbar-item-link">
@@ -98,27 +125,31 @@ const Header = () => {
                                          Trợ giúp
                                      </a>
                                  </li>
-                                 {/* <li class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">Đăng ký</li>
-                                 <li class="header__navbar-item header__navbar-item--strong">Đăng nhập</li>  */}
                                  <li class="header__navbar-item header__navbar-user">
                                      <img src={avatarImg} alt="" class="header__navbar-user-img"></img>
-                                     <span class="header__navbar-user-name">Xuan Linh</span>
+                                     <span class="header__navbar-user-name">{loggedInUser.name}</span>
         
                                      <ul class="header__navbar-user-menu">
                                          <li class="header__navbar-user-item">
-                                             <a href="">Tài khoản của tôi</a>
+                                             <a href="" onClick={handleMyProfile}>Tài khoản của tôi</a>
                                          </li>
                                          <li class="header__navbar-user-item">
                                              <a href="">Đơn mua</a>
                                          </li>
                                          <li class="header__navbar-user-item header__navbar-user-item--separate">
-                                             <a href="">Đăng xuất</a>
+                                             <a href="" onClick={handleLogout}>Đăng xuất</a>
                                          </li>
                                      </ul>
                                  </li>
                              </ul>
+                                 ) : (
+                                    <ul>
+                                        <li class="header__navbar-item header__navbar-item--strong header__navbar-item--separate">Đăng ký</li>
+                                        <li class="header__navbar-item header__navbar-item--strong" onClick={handleSignIn}>Đăng nhập</li>
+
+                                    </ul>
+                                 )}
                          </nav>
-        
                          <div class="header-with-search">
                              <div class="header__logo">
                                  <a href="/" class="header__logo-link">
@@ -132,7 +163,8 @@ const Header = () => {
                                      </svg>
                                  </a>
                              </div>
-        
+                         {loggedInUser ? (
+                            
                             <div class="header__search">
                                 <div class="header__search-input-wrap">
                                     <input type="text" id="search-bar" class="header__search-input" placeholder="SALE SỐC MUA LÀ CÓ QUÀ" onKeyPress={handleKeyPress}></input>
@@ -152,7 +184,11 @@ const Header = () => {
                                     <i class="header__search-btn-icon fas fa-search"></i>
                                 </Link>
                             </div>
-        
+                              ) : (
+                                <span></span>
+                             )}
+                         {loggedInUser ? (
+
                              <div class="header__cart">
                                  <div class="header__cart-wrap">
                                      <i class="header__cart-icon fas fa-shopping-cart"></i>
@@ -224,9 +260,12 @@ const Header = () => {
                                      </div>
                                  </div>
                              </div>
+                            ) : (
+                               <span></span>
+                            )}
                          </div>
                      </div>
-                </header>                    
+                     </header>                    
     );
 };
 

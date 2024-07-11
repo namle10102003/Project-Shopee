@@ -93,8 +93,9 @@
     text-decoration: none;
     color: var(--text-color);
     font-size: 1.4rem;
-    padding: 4px 16px;
+    padding: 8px 16px;
     display: block;
+    font-weight: 400;
 }
 
 .header__navbar-user-item a:first-child {
@@ -109,7 +110,7 @@
 }
 
 .header__navbar-user-item a:hover {
-    background-color: #fafafa;
+    color: #00bfa5;
     
 }
 

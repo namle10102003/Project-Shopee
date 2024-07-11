@@ -8,6 +8,7 @@ import ProductPage from '../pages/productPage';
 import CartPage from '../pages/cartPage';
 import CheckoutPage from '../pages/checkoutPage';
 import OrderTrackingPage from '../pages/orderTrackingPage';
+import UserPage from '../pages/userPage.js';
 import LoginPage from '../pages/loginPage.jsx';
 
 function AppRouter() {
@@ -22,6 +23,7 @@ function AppRouter() {
               <Route path="/cart" element={<CartPage />} />
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/order-tracking" element={<OrderTrackingPage />} />
+              <Route path="/user/:id" element={<UserPage />} />
           </Routes>
         <Footer />
       </Router>

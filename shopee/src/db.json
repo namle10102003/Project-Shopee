@@ -3,30 +3,45 @@
         "id": 1,
         "name": "Nguyen Van A",
         "username": "linh",
-        "password": "linh"
+        "password": "linh",
+        "email": "abc@def",
+        "phone": "0905000123",
+        "birthday": "01/11/2003"
     },
     {
         "id": 2,
         "name": "Tran Thi B",
         "username": "nhi",
-        "password": "nhi"
+        "password": "nhi",
+        "email": "abc@def",
+        "phone": "0905000123",
+        "birthday": "01/11/2003"
     },
     {
         "id": 3,
         "name": "Le Hoang C",
         "username": "lehoangc",
-        "password": "123456"
+        "password": "123456",
+        "email": "abc@def",
+        "phone": "0905000123",
+        "birthday": "01/11/2003"
     },
     {
         "id": 4,
         "name": "Pham Minh D",
         "username": "phamminhd",
-        "password": "admin@123"
+        "password": "admin@123",
+        "email": "abc@def",
+        "phone": "0905000123",
+        "birthday": "01/11/2003"
     },
     {
         "id": 5,
         "name": "Bui Thi E",
         "username": "buithie",
-        "password": "qwerty"
+        "password": "qwerty",
+        "email": "abc@def",
+        "phone": "0905000123",
+        "birthday": "01/11/2003"        
     }
 ]

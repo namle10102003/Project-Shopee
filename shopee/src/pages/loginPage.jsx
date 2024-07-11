@@ -19,6 +19,7 @@ function LoginPage() {
         const account = accounts.find(acc => acc.username === username && acc.password === password);
         if (account) {
             alert('Đăng nhập thành công');
+            localStorage.setItem('loggedInUser', JSON.stringify(account));
             // Chuyển hướng đến trang khác, ví dụ: trang chủ
             navigate('/');// 
         } else {

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 import facebookIcon from '../assets/images/logoFb.png';
 import googleIcon from '../assets/images/logoGg.png';
-import '../css/login/login.css';
+import '../styles/login.css';
 import accounts from '../db.json'; 
 
 function LoginPage() {

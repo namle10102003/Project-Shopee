@@ -14,6 +14,7 @@ import OrderTrackingPage from '../pages/orderTrackingPage';
 import UserPage from '../pages/userPage.js';
 import SearchingPage from '../pages/searchingPage.js';
 import LoginPage from '../pages/loginPage.jsx';
+import ListProductPage from '../pages/listProductPage.jsx'; 
 
 function AppRouter() {
   return (
@@ -28,6 +29,7 @@ function AppRouter() {
               <Route path="/products" element={<SearchingPage />} />
               <Route path="/order-tracking" element={<OrderTrackingPage />} />
               <Route path="/user/:id" element={<UserPage />} />
+              <Route path="/products" element={<ListProductPage />} />
           </Routes>
         <Footer />
       </Router>

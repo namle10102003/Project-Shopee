@@ -1,16 +1,25 @@
-import react from 'react';
+import react, { useRef } from 'react';
 import {Link} from 'react-router-dom';
+
 import qrImg from '../../../assets/images/qr_code.png';
 import appstoreImg from '../../../assets/images/app_store.png';
 import ggplayImg from '../../../assets/images/google_play.png';
 import cosmeticImg from '../../../assets/images/cosmetic_1.webp';
 import avatarImg from '../../../assets/images/avatar.jpg';
 import noCartImg from '../../../assets/images/no_cart.png';
-
 import './header.css';
 
 const Header = () => {
+    const searchLinkRef = useRef(null);
+
+    const handleKeyPress = (event) => {
+        if (event.key === "Enter") {
+            searchLinkRef.current.click();
+        }
+    };
+
     return (
+<<<<<<< HEAD
                 // <header class="header">
                 //     <div class="grid">
                 //         <nav class="header__navbar">
@@ -39,6 +48,36 @@ const Header = () => {
                 //                 </a>
                 //                 </li>
                 //             </ul>
+=======
+                <header class="header">
+                    <div class="grid wide">
+                        <nav class="header__navbar">
+                            <ul class="header__navbar-list">
+                                <li class="header__navbar-item header__navbar-item--has-qr header__navbar-item--separate">
+                                    Tải ứng dụng
+                                    <div class="header__qr">
+                                        <img src={qrImg} alt="QR Code" class="header__qr-img"></img>
+                                        <div class="header__qr-apps">
+                                            <a href="" class="header__qr-link">
+                                                <img src={ggplayImg} alt="Google Play" class="header__qr-download-img"></img>
+                                            </a>
+                                            <a href="" class="header__qr-link">
+                                                <img src={appstoreImg} alt="App Store" class="header__qr-download-img"></img>
+                                            </a>
+                                        </div>
+                                    </div>    
+                                </li>
+                                <li class="header__navbar-item">
+                                    <span class="header__navbar-title--no-pointer">Kết nối</span>
+                                <a href="" class="header__navbar-icon-link">
+                                    <i class="header__navbar-icon fa-brands fa-facebook"></i>
+                                </a>
+                                <a href="" class="header__navbar-icon-link">
+                                    <i class="header__navbar-icon fa-brands fa-instagram"></i>
+                                </a>
+                                </li>
+                            </ul>
+>>>>>>> eebc1c5da4d0704c8f8ee6aecbbfb07ff8f26afa
             
                 //             <ul class="header__navbar-list">
                 //                 <li class="header__navbar-item header__navbar-item--has-notify">
@@ -125,6 +164,7 @@ const Header = () => {
                 //                 </a>
                 //             </div>
         
+<<<<<<< HEAD
                 //             <div class="header__search">
                 //                 <div class="header__search-input-wrap">
                 //                     <input type="text" class="header__search-input" placeholder="SALE SỐC MUA LÀ CÓ QUÀ"></input>
@@ -144,6 +184,27 @@ const Header = () => {
                 //                     <i class="header__search-btn-icon fas fa-search"></i>
                 //                 </button>
                 //             </div>
+=======
+                            <div class="header__search">
+                                <div class="header__search-input-wrap">
+                                    <input type="text" id="search-bar" class="header__search-input" placeholder="SALE SỐC MUA LÀ CÓ QUÀ" onKeyPress={handleKeyPress}></input>
+                                    <div class="header__search-history">
+                                        <h3 class="header__search-history-heading">Lịch sử tìm kiếm</h3>
+                                        <ul class="header__search-history-list">
+                                            <li class="header__search-history-item">
+                                                <a href="">Kem dưỡng da</a>
+                                            </li>
+                                            <li class="header__search-history-item">
+                                                <a href="">Kem trị mụn</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <Link to="/" class="header__search-btn" ref={searchLinkRef}>
+                                    <i class="header__search-btn-icon fas fa-search"></i>
+                                </Link>
+                            </div>
+>>>>>>> eebc1c5da4d0704c8f8ee6aecbbfb07ff8f26afa
         
                 //             <div class="header__cart">
                 //                 <div class="header__cart-wrap">

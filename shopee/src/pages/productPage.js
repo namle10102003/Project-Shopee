@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import '../styles/productPage.css'
+import '../styles/productPage.css';
+import '../styles/searchingPage.css';
+import { displayItem } from '../components/core/searchEngine.js';
 
 const ProductPage = () => {
     const { id } = useParams();
     const [product, setProduct] = useState(null);
-
+    var start = Math.floor(Math.random() * 100);
+    
     useEffect(() => {
-        // Fetch product data from template.json
         fetch('/template.json')
             .then(response => response.json())
             .then(data => {
@@ -16,7 +18,16 @@ const ProductPage = () => {
             })
             .catch(error => console.error('Error fetching product data:', error));
     }, [id]);
-
+    
+    useEffect(() => {
+        fetch('/template.json')
+        .then(response => response.json())
+        .then(data => {
+            displayItem(data.slice(start, start + 5), 'product-page__upsell');
+        })
+        .catch(error => console.error('Error loading products', error));
+    }, [start]);
+    
     if (!product) {
         return <div>Loading...</div>;
     }
@@ -62,6 +73,12 @@ const ProductPage = () => {
                                 <p>Mua Ngay</p>
                             </a>
                         </div>
+                    </div>
+                </div>
+                
+                <div className='product-page__upsell-container'>
+                    <h1>Các sản phẩm khác</h1>
+                    <div id="product-page__upsell" className="row section-products">
                     </div>
                 </div>
             </div>

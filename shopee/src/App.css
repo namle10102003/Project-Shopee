@@ -674,3 +674,28 @@ html {
   background-color: #c3c3c3;
   color: #949494;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    font-size: 2rem;;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 15px;
+    background-color: transparent;
+    color: var(--text-color);
+}
+
+.pagination button.active {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.pagination button:hover {
+    cursor: pointer;
+    color: var(--primary-color);
+}

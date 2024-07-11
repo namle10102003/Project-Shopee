@@ -1,7 +1,6 @@
-import react, { useRef } from 'react';
+import react, { useRef, useState } from 'react';
 import {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
 
 import qrImg from '../../../assets/images/qr_code.png';
 import appstoreImg from '../../../assets/images/app_store.png';
@@ -11,9 +10,16 @@ import avatarImg from '../../../assets/images/avatar.jpg';
 import noCartImg from '../../../assets/images/no_cart.png';
 import './header.css';
 
-const Header = () => {
+const Header = ({ onSearch }) => {
     const navigate = useNavigate();
     const searchLinkRef = useRef(null);
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const handleSearchChange = (e) => {
+        const value = e.target.value;
+        setSearchQuery(value);
+        if(onSearch)    onSearch(value, 1);
+    };
 
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
@@ -167,20 +173,9 @@ const Header = () => {
                             
                             <div class="header__search">
                                 <div class="header__search-input-wrap">
-                                    <input type="text" id="search-bar" class="header__search-input" placeholder="SALE SỐC MUA LÀ CÓ QUÀ" onKeyPress={handleKeyPress}></input>
-                                    <div class="header__search-history">
-                                        <h3 class="header__search-history-heading">Lịch sử tìm kiếm</h3>
-                                        <ul class="header__search-history-list">
-                                            <li class="header__search-history-item">
-                                                <a href="">Kem dưỡng da</a>
-                                            </li>
-                                            <li class="header__search-history-item">
-                                                <a href="">Kem trị mụn</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <input type="text" id="search-bar" class="header__search-input" placeholder="SALE SỐC MUA LÀ CÓ QUÀ" onKeyPress={handleKeyPress} value={searchQuery} onChange={handleSearchChange}></input>
                                 </div>
-                                <Link to="/" class="header__search-btn" ref={searchLinkRef}>
+                                <Link to="/products" class="header__search-btn" ref={searchLinkRef}>
                                     <i class="header__search-btn-icon fas fa-search"></i>
                                 </Link>
                             </div>

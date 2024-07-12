@@ -25,11 +25,11 @@
 
 .loginform {
     width: 100%; /* Thay đổi width thành 100% để nó tràn ngang trên mọi kích thước màn hình */
-    max-width: 300px; /* Giới hạn độ rộng tối đa để không quá rộng trên màn hình lớn */
+    max-width: 400px; /* Giới hạn độ rộng tối đa để không quá rộng trên màn hình lớn */
     background-color: white;
-    padding: 7px;
+    padding: 0 30px;
     border-radius: 3px;
-    box-shadow: 0 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.6) 0px 5px 15px;
     margin-right: 10% /* Đảm bảo form luôn canh phải */
   
 }
@@ -37,14 +37,15 @@
 .btn-login {
     width: 100%;
     background-color: #f7755a;
-    padding: 5px;
+    padding: 14px;
+    font-size: 1.6rem;
     border: none;
     color: white;
     transition: background-color 0.3s ease;
 }
 
 .login-element{
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     width: 100%;
 }
 
@@ -71,12 +72,13 @@
 }
 
 .form-group {
-    margin-bottom: 10rem;
-}
-
-.login-element {
-    margin-top: 5%;
-    margin-bottom: 5%;
+    /* width: 100%;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    margin: 0; */
+    margin-bottom: 20px;
 }
 
 .btn-facebook, .btn-google {
@@ -86,16 +88,64 @@
     width: 100%;
     padding: 10px;
     margin-right: 2%;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
     background-color: #ffffff;
-    font-weight: bold;
+    font-size: 1.2rem;
+    font-weight: 400;
 }
 .btn-facebook, .btn-google {
     background-color: white;
     color: rgb(65, 60, 60);
-    border: 0.1px solid ;
     padding: 5px;
     margin-right: 10px;
+    margin-bottom: 30px;
+}
 
+.login-header {
+    font-size: 2rem;
+    padding: 22px 0;
+    font-weight: 400;
+    margin: 0;
+}
+
+.form-control {
+    width: 100%;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 14px;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.login-sub {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-sub a {
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.login-or {
+    margin-bottom: 14px;
+}
+
+.login-footer {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #a8a2a2;
+    margin-bottom: 30px;
+}
+
+.login-footer a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.error-message {
+    color: red;
+    font-size: 1.3rem;
+    font-weight: bold;
 }

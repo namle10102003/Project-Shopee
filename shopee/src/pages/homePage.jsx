@@ -15,33 +15,32 @@ const HomePage = () => {
        
 
         {/* Carasel */}
-            <div id="carouselExampleIndicators" className="carousel" data-ride="carousel">
-                <ol className="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" className="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                </ol>
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                    <img src={caroselone} className="d-block w-100" alt="..." />
-                    </div>
-                    <div className="carousel-item">
-                    <img src={caroseltwo} className="d-block w-100" alt="..." />
-                    </div>
-                    <div className="carousel-item">
-                    <img src={caroselthree} className="d-block w-100" alt="..." />
-                    </div>
+        <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">
+            <div className="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div className="carousel-inner">
+                <div className="carousel-item active">
+                <img src={caroselone} className="d-block w-100" alt="..."/>
                 </div>
-                <button className="carousel-control-prev" type="button" data-target="#carouselExampleIndicators" data-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Previous</span>
-                </button>
-                <button className="carousel-control-next" type="button" data-target="#carouselExampleIndicators" data-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Next</span>
-                </button>
+                <div className="carousel-item">
+                <img src={caroseltwo} className="d-block w-100" alt="..."/>
                 </div>
-        
+                <div className="carousel-item">
+                <img src={caroselthree} className="d-block w-100" alt="..."/>
+                </div>
+            </div>
+            <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Previous</span>
+            </button>
+            <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="visually-hidden">Next</span>
+            </button>
+            </div>
 
 
 

@@ -2,7 +2,7 @@ export const displayItem = (items, elementId) => {
     document.getElementById(elementId).innerHTML = items.map((item) => {
         var { image = 'https://via.placeholder.com/150', title = '', price = 0, sold = 0, ID = 1 } = item;
         return (
-            `<a href="/product/${ID}" class='col l-2-4 m-3 c-6 box-item'>
+            `<a href="/product/${ID}" class='col-6 col-md-3 col-xl-2 box-item'>
                     <img class='item-image' src="${image}" alt="${title}"></img>
                     <div class='item-body'>
                         <h2>${title}</h2>
@@ -40,5 +40,4 @@ export const handleSearch = (query, data, page, itemsPerPage, setProducts, setCu
     setCurrentPage(page);
     displayItem(filteredData.slice((page - 1) * itemsPerPage, page * itemsPerPage), id);
 };
-
 

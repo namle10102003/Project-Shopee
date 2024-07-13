@@ -5,7 +5,7 @@
 }
 
 .product-view {
-    margin-top: 54px;
+    margin-top: 54px !important;
     background-color: var(--white-color);
 }
 
@@ -21,6 +21,7 @@
 .product-view__left-desc p, i{
     display: inline-block;
     margin-left: 5px;
+    margin-top: 10px;
 }
 
 .product-view__left-desc i {
@@ -31,6 +32,7 @@
     font-size: 2rem;
     font-weight: 400;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .product-view__parameter {
@@ -99,9 +101,13 @@
     margin-right: 10px;
 }
 
+.product-view__btn p {
+    margin-top: 1rem;
+}
+
 .product-view__btn a {
     background-color: var(--primary-color);
-    color: var(--white-color);
+    color: var(--white-color) !important;
     padding: 0 54px;
 }
 

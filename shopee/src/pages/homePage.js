@@ -1,3 +1,4 @@
+import Slider from '../components/ui/commons/slider.jsx';
 import React, { useState, useEffect } from 'react';
 import '../styles/homePage.css';
 import '../styles/searchingPage.css';
@@ -28,9 +29,7 @@ const HomePage = () => {
 
     return (
         <div className='home-page'>
-            <div>
-                <h1>home-page__slider</h1>
-            </div>
+            <Slider/>
             <div className='home-page__body'>
                 <div className='grid wide'>
                     <div className='home-page-body__container'>

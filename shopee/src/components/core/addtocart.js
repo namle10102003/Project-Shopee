@@ -39,3 +39,16 @@ export function removeFromCart(productId, userId) {
     cartData = cartData.filter(item => item.productId !== productId);
     saveCart(cartData, userId); // Lưu giỏ hàng vào localStorage
 }
+
+export function updateCartItemQuantity(productId, userId, newQuantity) {
+    let cartData = getCart(userId);
+    const productIndex = cartData.findIndex(item => item.productId === productId);
+
+    if (productIndex !== -1) {
+        cartData[productIndex].quantity = newQuantity;
+        cartData[productIndex].totalPrice = cartData[productIndex].price * newQuantity;
+        saveCart(cartData, userId);
+    }
+
+    return cartData;
+}

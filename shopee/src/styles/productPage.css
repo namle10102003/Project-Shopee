@@ -72,10 +72,28 @@
     margin-right: 48px;
 }
 
-.product-view__quantity input {
+.product-view__quantity-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    font-size: 1.6rem;
+}
+
+.product-view__quantity-control input {
     width: 50px;
     height: 32px;
-    margin-right: 15px;
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.product-view__quantity-control button {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    background-color: var(--white-color);
+    color: var(--text-color);
 }
 
 .product-view__btn {
@@ -98,7 +116,7 @@
 }
 
 .product-view__btn i {
-    margin-right: 10px;
+    margin: 0 10px 0 0;
 }
 
 .product-view__btn p {
@@ -120,3 +138,4 @@
     margin-bottom: 10px;
     font-weight: 400;
 }
+

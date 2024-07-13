@@ -30,6 +30,10 @@
     display: block;
 }
 
+.user-page__title-item a{
+    color: var(--text-color);
+}
+
 .user-page__title-item p, i{
     display: inline-block;
     margin-left: 10px;
@@ -43,7 +47,8 @@
     color: var(--primary-color);
 }
 
-.user-page__title-item:hover {
+.user-page__title-item:hover,
+.user-page__title-item:hover a {
     color: var(--primary-color);
     cursor: pointer;
 }

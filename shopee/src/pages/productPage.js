@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { addToCart } from '../components/core/addtocart';
 import '../styles/productPage.css';
+import '../styles/searchingPage.css';
 import { displayItem } from '../components/core/searchEngine.js';
 
 const ProductPage = () => {
@@ -31,6 +32,7 @@ const ProductPage = () => {
         }
         addToCart({
             productId: product.ID, // Sử dụng productId từ template.json
+            image: product.image,
             productName: product.title,
             price: product.price,
             quantity: quantity
@@ -51,6 +53,13 @@ const ProductPage = () => {
     if (!product) {
         return <div>Loading...</div>;
     }
+
+    const handleQuantityChange = (amount) => {
+        setQuantity((prevQuantity) => {
+            const newQuantity = prevQuantity + amount;
+            return newQuantity > 0 ? newQuantity : 1; 
+        });
+    };
 
     return (
         <div className='product'>
@@ -73,15 +82,24 @@ const ProductPage = () => {
                     </div>
                     <div className='col-7'>
                         <h1 className='grid'>{product.title}</h1>
+                        <div className='product-view__parameter'>
+                            <p>{product.view} Lượt xem</p>
+                            <p>{product.sold} Đã bán</p>
+                            <a>Tố cáo</a>
+                        </div>
                         <h1 className='product-view__price'>{product.price} VND</h1>
                         <div className='product-view__quantity'>
                             <p>Số lượng</p>
-                            <input
-                                type="number"
-                                min={1}
-                                value={quantity}
-                                onChange={(e) => setQuantity(parseInt(e.target.value))}
-                            ></input>
+                            <div className="product-view__quantity-control">
+                                <button onClick={() => handleQuantityChange(-1)}>-</button>
+                                <input
+                                    type="number"
+                                    min={1}
+                                    value={quantity}
+                                    onChange={(e) => setQuantity(parseInt(e.target.value))}
+                                ></input>
+                                <button onClick={() => handleQuantityChange(1)}>+</button>
+                            </div>
                             <p>{product.remaining} sản phẩm có sẵn</p>
                         </div>
                         <div className='product-view__btn'>
@@ -94,6 +112,12 @@ const ProductPage = () => {
                             </a>
                         </div>
                     </div>
+                </div>
+                
+                <div className='product-page__upsell-container'>
+                    <h1>Các sản phẩm khác</h1>
+                    <div id="product-page__upsell" className="row section-products">
+                </div>
                 </div>
             </div>
         </div>

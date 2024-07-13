@@ -13,7 +13,7 @@ const UserPage = () => {
     useEffect(() => {
         const currentUser = JSON.parse(localStorage.getItem('loggedInUser'));
         if (!currentUser || currentUser.id.toString() !== id) {
-            alert('Bạn không có quyền truy cập trang này.');
+            alert('Vui lòng đăng nhập trước!');
             navigate('/login');
             return;
         }

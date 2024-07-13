@@ -71,9 +71,25 @@ function LoginPage() {
                         Đăng nhập
                     </button>
                     <div className="d-flex justify-content-between mt-2 login-element login-sub">
-                        <a href="/forgotpassword" className="login-element ">
-                            Quên mật khẩu?
-                        </a>
+                    <a href="#">Quên mật khẩu</a>
+                        <a href="#">Đăng nhập với SMS</a>
+                    </div>
+
+                    <div className="text-center my-3 login-element login-or">
+                        <hr className="horizontal-line" />
+                        <span className="or-text">HOẶC</span>
+                        <hr className="horizontal-line" />
+                    </div>
+                    <div style={{ display: 'flex' }}>
+                        <button className="btn-facebook btn-block login-element">
+                            <img src={facebookIcon} alt="Facebook" width="20" /> Facebook
+                        </button>
+                        <button className="btn-google btn-block login-element">
+                            <img src={googleIcon} alt="Google" width="20" /> Google
+                        </button>
+                    </div>
+                    <div className="text-center mt-3 login-element login-footer">
+                        <span>Bạn mới biết đến Shopee? <a href="#">Đăng ký</a></span>
                     </div>
                 </div>
             </div>

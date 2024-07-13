@@ -11,6 +11,8 @@ const ProductPage = () => {
     const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1); // State để lưu số lượng
 
+    var start = Math.floor(Math.random() * 300);
+
     useEffect(() => {
         fetch('/template.json')
             .then(response => response.json())
@@ -36,6 +38,16 @@ const ProductPage = () => {
         alert('Đã thêm sản phẩm vào giỏ hàng!');
     };
 
+    
+    useEffect(() => {
+        fetch('/template.json')
+        .then(response => response.json())
+        .then(data => {
+            displayItem(data.slice(start, start + 6), 'product-page__upsell');
+        })
+        .catch(error => console.error('Error loading products', error));
+    }, [start]);
+    
     if (!product) {
         return <div>Loading...</div>;
     }
@@ -44,11 +56,22 @@ const ProductPage = () => {
         <div className='product'>
             <div className='grid wide'>
                 <div className='row product-view'>
-                    <div className='col l-5 product-view__left'>
+                    <div className='col-5 product-view__left'>
                         {/* Slider */}
                         <img src={product.image} alt={product.title} />
+                        <div className='row'>
+                            <div className='col product-view__left-desc'>
+                                <p>Chia sẻ:</p> 
+                                <i class="fa-brands fa-facebook"></i>
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                            <div className='col product-view__left-desc'>
+                                <i class="fa-regular fa-heart"></i>
+                                <p>Đã thích ({product.sold})</p>
+                            </div>
+                        </div>
                     </div>
-                    <div className='col l-7'>
+                    <div className='col-7'>
                         <h1 className='grid'>{product.title}</h1>
                         <h1 className='product-view__price'>{product.price} VND</h1>
                         <div className='product-view__quantity'>
@@ -58,7 +81,7 @@ const ProductPage = () => {
                                 min={1}
                                 value={quantity}
                                 onChange={(e) => setQuantity(parseInt(e.target.value))}
-                            />
+                            ></input>
                             <p>{product.remaining} sản phẩm có sẵn</p>
                         </div>
                         <div className='product-view__btn'>

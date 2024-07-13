@@ -1,4 +1,5 @@
 .header {
+    z-index: 9999;
     height: var(--header-height);
     background-image: linear-gradient(0, #fe6433, #f53e2d);
     position: fixed;
@@ -79,10 +80,6 @@
     right: 0;
     width: 54%;
     height: 8px;
-}
-
-.header__navbar-user-item {
-
 }
 
 .header__navbar-user-item--separate {

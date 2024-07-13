@@ -41,4 +41,3 @@ export const handleSearch = (query, data, page, itemsPerPage, setProducts, setCu
     displayItem(filteredData.slice((page - 1) * itemsPerPage, page * itemsPerPage), id);
 };
 
-

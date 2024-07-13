@@ -1,17 +1,24 @@
+// UserPage.js
+
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import accounts from '../db.json'; 
-import '../styles/userPage.css'
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import '../styles/userPage.css';
 import avatarImg from '../assets/images/avatar.jpg';
 
 const UserPage = () => {
     const { id } = useParams();
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        const user = accounts.find(acc => acc.id === parseInt(id));
-        setUser(user);
-    }, [id]);
+        const currentUser = JSON.parse(localStorage.getItem('loggedInUser'));
+        if (!currentUser || currentUser.id.toString() !== id) {
+            alert('Bạn không có quyền truy cập trang này.');
+            navigate('/login');
+            return;
+        }
+        setUser(currentUser);
+    }, [id, navigate]);
 
     if (!user) {
         return <div>Loading...</div>;
@@ -28,17 +35,17 @@ const UserPage = () => {
                         </div>
                         <div className='user-page__title'>
                             <div className='user-page__title-item'>
-                                <i class="fa-regular fa-user"></i>
+                                <i className="fa-regular fa-user"></i>
                                 <p>Tài Khoản Của Tôi</p>
                             </div>
                             <div className='user-page__title-item'>
-                                <a>
-                                    <i class="fas fa-shopping-cart"></i>
+                                <Link to={`/cart/${user.id}`}>
+                                    <i className="fas fa-shopping-cart"></i>
                                     <p>Giỏ Hàng</p>
-                                </a>
+                                </Link>
                             </div>
                             <div className='user-page__title-item'>
-                                <i class="fa-solid fa-list"></i>
+                                <i className="fa-solid fa-list"></i>
                                 <p>Đơn Mua</p>
                             </div>
                         </div>
@@ -50,19 +57,18 @@ const UserPage = () => {
                         </div>
                         <div className='row user-page__profile-body'>
                             <div className='col l-3 user-page__profile-body-left' >
-                            <p>Tên đăng nhập</p>
-                            <p>Tên</p>
-                            <p>Email</p>
-                            <p>Số điện thoại</p>
-                            <p>Ngày sinh</p>
-
+                                <p>Tên đăng nhập</p>
+                                <p>Tên</p>
+                                <p>Email</p>
+                                <p>Số điện thoại</p>
+                                <p>Ngày sinh</p>
                             </div>
                             <div className='col l-9'>
-                            <p>{user.username}</p>
-                            <p>{user.name}</p>
-                            <p>{user.email}</p>
-                            <p>{user.phone}</p>
-                            <p>{user.birthday}</p>
+                                <p>{user.username}</p>
+                                <p>{user.name}</p>
+                                <p>{user.email}</p>
+                                <p>{user.phone}</p>
+                                <p>{user.birthday}</p>
                             </div>
                         </div>
                     </div>

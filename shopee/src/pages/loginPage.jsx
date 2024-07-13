@@ -1,10 +1,12 @@
+// loginPage.jsx
+
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from '../assets/images/logo.png';
 import facebookIcon from '../assets/images/logoFb.png';
 import googleIcon from '../assets/images/logoGg.png';
 import '../styles/login.css';
-import accounts from '../db.json'; 
+import accounts from '../db.json';
 
 function LoginPage() {
     const [username, setUsername] = useState('');
@@ -12,18 +14,14 @@ function LoginPage() {
     const [errorMessage, setErrorMessage] = useState('');
     const searchLinkRef = useRef(null);
     const navigate = useNavigate();
+
     const handleLogin = () => {
-        // if (!username || !password) {
-        //     alert('Vui lòng nhập đầy đủ thông tin đăng nhập');
-        //     return;
-        // }
-        
         const account = accounts.find(acc => acc.username === username && acc.password === password);
         if (account) {
             localStorage.setItem('loggedInUser', JSON.stringify(account));
             navigate('/');
         } else {
-            setErrorMessage('Tài khoản hoặc mật khẩu không chính xác.')
+            setErrorMessage('Tài khoản hoặc mật khẩu không chính xác.');
         }
     };
 
@@ -32,7 +30,7 @@ function LoginPage() {
             searchLinkRef.current.click();
         }
     };
-    
+
     return (
         <div>
             <nav className="navbar navbar-light nav-login">
@@ -73,25 +71,9 @@ function LoginPage() {
                         Đăng nhập
                     </button>
                     <div className="d-flex justify-content-between mt-2 login-element login-sub">
-                        <a href="#">Quên mật khẩu</a>
-                        <a href="#">Đăng nhập với SMS</a>
-                    </div>
-
-                    <div className="text-center my-3 login-element login-or">
-                        <hr className="horizontal-line" />
-                        <span className="or-text">HOẶC</span>
-                        <hr className="horizontal-line" />
-                    </div>
-                    <div style={{ display: 'flex' }}>
-                        <button className="btn-facebook btn-block login-element">
-                            <img src={facebookIcon} alt="Facebook" width="20" /> Facebook
-                        </button>
-                        <button className="btn-google btn-block login-element">
-                            <img src={googleIcon} alt="Google" width="20" /> Google
-                        </button>
-                    </div>
-                    <div className="text-center mt-3 login-element login-footer">
-                        <span>Bạn mới biết đến Shopee? <a href="#">Đăng ký</a></span>
+                        <a href="/forgotpassword" className="login-element ">
+                            Quên mật khẩu?
+                        </a>
                     </div>
                 </div>
             </div>

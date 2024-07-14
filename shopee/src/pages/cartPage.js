@@ -22,7 +22,6 @@ function CartPage() {
 
         if (currentUser.id.toString() !== userId) {
             navigate(`/cart/${currentUser.id}`);
-            return;
         }
 
         setIsAuthorized(true);

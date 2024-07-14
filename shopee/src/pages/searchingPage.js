@@ -2,21 +2,30 @@ import React, { useState, useEffect } from 'react';
 import '../styles/searchingPage.css';
 import { displayItem, handleSearch  } from '../components/core/searchEngine.js';
 import Header from '../components/ui/commons/header.js';
+import { useLocation } from 'react-router-dom';
+
+
+const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+};
 
 const HomePage = () => {
     const [products, setProducts] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchQuery, setSearchQuery] = useState('');
     const itemsPerPage = 60;
+    const query = useQuery();
+    const searchParam = query.get('query') || '';
+
     useEffect(() => {
+        setSearchQuery(searchParam);
         fetch('template.json')
             .then(response => response.json())
             .then(data => {
-                setProducts(data);
-                displayItem(data.slice(0, itemsPerPage), 'search-page__products');
+                handleSearch(searchParam, data, 1, itemsPerPage, setProducts, setCurrentPage, displayItem, 'search-page__products');
             })
             .catch(error => console.error('Error loading products', error));
-    }, []);
+    }, [searchParam]);
 
     const handleInputChange = (query, page) => {
         setSearchQuery(query)

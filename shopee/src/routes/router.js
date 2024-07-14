@@ -24,7 +24,7 @@ function AppRouter() {
                 <Route path="/product/:id" element={<ProductPage />} />
                 <Route path="/cart/:userId" element={<CartPage />} />
                 <Route path="/checkout" element={<CheckoutPage />} />
-                <Route path="/products" element={<SearchingPage />} />
+                <Route path="/search" element={<SearchingPage />} />
                 <Route path="/order-tracking" element={<OrderTrackingPage />} />
                 <Route path="/user/:id" element={<UserPage />} />
             </Routes>

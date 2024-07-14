@@ -27,6 +27,10 @@ const Header = ({ onSearch }) => {
         }
     };
 
+    const handleSearchClick = () => {
+        navigate(`/search?query=${encodeURIComponent(searchQuery)}`);
+    };
+
     const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
     const handleMyProfile = (event) => {
@@ -175,10 +179,10 @@ const Header = ({ onSearch }) => {
                                 <div class="header__search-input-wrap">
                                     <input type="text" id="search-bar" class="header__search-input" placeholder="SALE SỐC MUA LÀ CÓ QUÀ" onKeyPress={handleKeyPress} value={searchQuery} onChange={handleSearchChange}></input>
                                 </div>
-                                <Link to="/products" class="header__search-btn" ref={searchLinkRef}>
-                                    <i class="header__search-btn-icon fas fa-search"></i>
-                                </Link>
-                            </div>
+                                    <button onClick={handleSearchClick} className="header__search-btn" ref={searchLinkRef}>
+                                        <i className="header__search-btn-icon fas fa-search"></i>
+                                    </button>
+                                </div>
                               ) : (
                                 <span></span>
                              )}

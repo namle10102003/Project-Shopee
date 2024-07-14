@@ -12,11 +12,16 @@ const UserPage = () => {
 
     useEffect(() => {
         const currentUser = JSON.parse(localStorage.getItem('loggedInUser'));
-        if (!currentUser || currentUser.id.toString() !== id) {
+        if (!currentUser) {
             alert('Vui lòng đăng nhập trước!');
             navigate('/login');
             return;
         }
+
+        if (currentUser.id.toString() !== id) {
+            navigate(`/user/${currentUser.id}`);
+        }
+
         setUser(currentUser);
     }, [id, navigate]);
 

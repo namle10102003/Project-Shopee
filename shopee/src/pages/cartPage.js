@@ -13,7 +13,7 @@ function CartPage() {
 
     useEffect(() => {
         const currentUser = JSON.parse(localStorage.getItem('loggedInUser'));
-
+        
         if (!currentUser) {
             alert('Vui lòng đăng nhập trước!');
             navigate('/login');

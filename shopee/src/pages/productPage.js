@@ -37,7 +37,7 @@ const ProductPage = () => {
             price: product.price,
             quantity: quantity
         }, currentUser.id);
-        alert('Đã thêm sản phẩm vào giỏ hàng!');
+        addSuccess();
     };
 
     
@@ -60,6 +60,20 @@ const ProductPage = () => {
             return newQuantity > 0 ? newQuantity : 1; 
         });
     };
+
+    function addSuccess () {
+        const main = document.getElementById("toast");
+        main.style.display = 'flex';
+      
+        const autoRemove = setTimeout(function () {
+            main.style.display = 'none';
+        }, 3001);
+      
+        main.onclick = function () {
+            main.style.display = 'none';
+            clearTimeout(autoRemove);
+        };
+    }
 
     return (
         <div className='product'>
@@ -103,7 +117,7 @@ const ProductPage = () => {
                             <p>{product.remaining} sản phẩm có sẵn</p>
                         </div>
                         <div className='product-view__btn'>
-                            <button onClick={addToCartHandler}>
+                            <button className='product-view__add-btn' onClick={addToCartHandler}>
                                 <i className="fas fa-shopping-cart"></i>
                                 <p>Thêm Vào Giỏ Hàng</p>
                             </button>
@@ -120,6 +134,16 @@ const ProductPage = () => {
                 </div>
                 </div>
             </div>
+        <div id="toast">
+            <div className='toasts'>
+                <div class="toast__icon">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <div class="toast__body">
+                    <h3 class="toast__msg">Sản phẩm đã được thêm vào Giỏ hàng</h3>
+                </div>
+            </div>
+        </div>
         </div>
     );
 };

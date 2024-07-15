@@ -27,7 +27,7 @@ export function addToCart(product, userId) {
         cartData[existingProductIndex].totalPrice += product.totalPrice;
     } else {
         // Nếu sản phẩm chưa tồn tại, thêm vào giỏ hàng
-        cartData.push(product);
+        cartData.unshift(product);
     }
 
     saveCart(cartData, userId); // Lưu giỏ hàng vào localStorage

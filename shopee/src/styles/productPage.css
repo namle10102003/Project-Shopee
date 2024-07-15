@@ -139,3 +139,54 @@
     font-weight: 400;
 }
 
+#toast {
+    z-index: 999999;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    display: none; 
+    align-items: center;
+    justify-content: center;
+}
+  
+.toasts {
+    text-align: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 2px;
+    padding: 30px 20px;
+    min-width: 400px;
+    max-width: 450px;
+    animation: fadeOut linear 2s 1s forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+.toast__icon,
+.toast__msg {
+    color: var(--white-color);
+}
+
+.toast__icon i {
+    font-size: 4rem;
+    padding: 14px;
+    border-radius: 50%;
+    background-color: #00bfa5;
+}
+
+.toast__msg {
+    font-size: 2rem;
+    padding-top: 16px;
+    line-height: 1.5;
+}

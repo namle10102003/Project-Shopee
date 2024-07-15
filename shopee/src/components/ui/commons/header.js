@@ -1,7 +1,8 @@
-import react, { useRef, useState } from 'react';
+import react, { useRef, useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
+import { getCart } from '../../core/addtocart';
 import qrImg from '../../../assets/images/qr_code.png';
 import appstoreImg from '../../../assets/images/app_store.png';
 import ggplayImg from '../../../assets/images/google_play.png';
@@ -14,6 +15,7 @@ const Header = ({ onSearch }) => {
     const navigate = useNavigate();
     const searchLinkRef = useRef(null);
     const [searchQuery, setSearchQuery] = useState('');
+    const [cartData, setCartData] = useState([]);
 
     const handleSearchChange = (e) => {
         const value = e.target.value;
@@ -52,6 +54,13 @@ const Header = ({ onSearch }) => {
         event.preventDefault(); 
         navigate('/login'); 
     };
+
+    useEffect(() => {
+        if (loggedInUser) {
+            const cart = getCart(loggedInUser.id);
+            setCartData(cart);
+        }
+    }, [loggedInUser]);
 
     return (
                 <header class="header">
@@ -187,75 +196,39 @@ const Header = ({ onSearch }) => {
                                 <span></span>
                              )}
                          {loggedInUser ? (
-
                              <div class="header__cart">
                                  <div class="header__cart-wrap">
-                                     <i class="header__cart-icon fas fa-shopping-cart"></i>
-                                     <span class="header__cart-notice">3</span>
-                                     {/* No cart: header__cart--no-cart  */}
+                                    <Link to={`/cart/${loggedInUser.id}`}>
+                                        <i class="header__cart-icon fas fa-shopping-cart"></i>
+                                        <span class="header__cart-notice">{cartData.length}</span>
+                                    </Link>
                                      <div class="header__cart-list">
-                                         <img src={noCartImg} alt="No cart" class="header__cart-no-cart-img"></img>
-                                         <span class="header__cart-list-no-cart-msg">Chưa có sản phẩm</span>
-        
-                                         <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
-                                         <ul class="header__cart-list-item">
-                                             {/* Cart item  */}
-                                             <li class="header__cart-item">
-                                                 <img src={cosmeticImg} alt="" class="header__cart-img"></img>
-                                                 <div class="header__cart-item-info">
-                                                     <div class="header__cart-item-head">
-                                                         <h5 class="header__cart-item-name">Bộ kem đặc trị vùng mắt</h5>
-                                                         <div class="header__cart-item-price-wrap">
-                                                             <span class="header__cart-item-price">2.000.000đ</span>
-                                                             <span class="header__cart-item-multiply">x</span>
-                                                             <span class="header__cart-item-qnt">2</span>
-                                                         </div>
-                                                     </div>
-                                                     <div class="header__cart-item-body">
-                                                         <span class="header__cart-item-desc">Phân loại: Bạc</span>
-                                                         <span class="header__cart-item-remove">Xóa</span>
-                                                     </div>
-                                                 </div>
-                                             </li>
-        
-                                             <li class="header__cart-item">
-                                                 <img src={cosmeticImg} alt="" class="header__cart-img"></img>
-                                                 <div class="header__cart-item-info">
-                                                     <div class="header__cart-item-head">
-                                                         <h5 class="header__cart-item-name">Bộ kem đặc trị vùng mắt</h5>
-                                                         <div class="header__cart-item-price-wrap">
-                                                             <span class="header__cart-item-price">2.000.000đ</span>
-                                                             <span class="header__cart-item-multiply">x</span>
-                                                             <span class="header__cart-item-qnt">2</span>
-                                                         </div>
-                                                     </div>
-                                                     <div class="header__cart-item-body">
-                                                         <span class="header__cart-item-desc">Phân loại: Bạc</span>
-                                                         <span class="header__cart-item-remove">Xóa</span>
-                                                     </div>
-                                                 </div>
-                                             </li>
-        
-                                             <li class="header__cart-item">
-                                                 <img src={cosmeticImg} alt="" class="header__cart-img"></img>
-                                                 <div class="header__cart-item-info">
-                                                     <div class="header__cart-item-head">
-                                                         <h5 class="header__cart-item-name">Bộ kem đặc trị vùng mắt</h5>
-                                                         <div class="header__cart-item-price-wrap">
-                                                             <span class="header__cart-item-price">2.000.000đ</span>
-                                                             <span class="header__cart-item-multiply">x</span>
-                                                             <span class="header__cart-item-qnt">2</span>
-                                                         </div>
-                                                     </div>
-                                                     <div class="header__cart-item-body">
-                                                         <span class="header__cart-item-desc">Phân loại: Bạc</span>
-                                                         <span class="header__cart-item-remove">Xóa</span>
-                                                     </div>
-                                                 </div>
-                                             </li>
-                                         </ul>
-        
-                                         <a class="header__cart-view-cart btn btn--primary">Xem giỏ hàng</a>
+                                        {cartData.length ? (
+                                            <div>
+                                                <h4 class="header__cart-heading">Sản Phẩm Mới Thêm</h4>
+                                                <ul className="header__cart-list-item">
+                                                    {cartData.slice(0, 5).map(item => (
+                                                        <li key={item.productId} className='header__cart-item'>
+                                                            <img src={item.image} alt={item.productName} className='header__cart-img'/>
+                                                            <div class="header__cart-item-info">
+                                                                <div class="header__cart-item-head">
+                                                                    <h5 className='header__cart-item-name'>{item.productName}</h5>
+                                                                    <div class="header__cart-item-price-wrap">
+                                                                        <span className='header__cart-item-price'>{item.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                                <Link to={`/cart/${loggedInUser.id}`} class="header__cart-view-cart btn btn--primary">Xem giỏ hàng</Link>
+                                            </div>
+                                        ) : (
+                                        <div className='header__cart-list--no-cart'>
+                                            <img src={noCartImg} alt="No cart" class="header__cart-no-cart-img"></img>
+                                            <span class="header__cart-list-no-cart-msg">Chưa có sản phẩm</span>
+                                        </div>
+                                        )}
                                      </div>
                                  </div>
                              </div>
